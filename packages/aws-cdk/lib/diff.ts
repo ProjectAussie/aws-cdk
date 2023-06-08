@@ -29,6 +29,8 @@ export function printStackDiff(
       if (!change) { return true; }
       if (change.newResourceType === 'AWS::CDK::Metadata') { return false; }
       if (change.oldResourceType === 'AWS::CDK::Metadata') { return false; }
+      if (change.newProperties && change.newProperties['Tags']) { return false; }
+      if (change.oldProperties && change.oldProperties['Tags']) { return false; }
       return true;
     });
   }
